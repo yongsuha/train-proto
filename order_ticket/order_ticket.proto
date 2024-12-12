@@ -1,0 +1,41 @@
+syntax = "proto3";
+option go_package = "./";
+
+message AddOrderTicketReq {
+  int64 OrderId = 1;
+  int64 TicketId = 2;
+}
+
+message AddOrderTicketResp {
+  int64 Success = 1;
+}
+
+message DelOrderTicketReq {
+  int64 OrderId = 1;
+  int64 TicketId = 2;
+}
+
+message DelOrderTicketResp {
+  int64 Success = 1;
+}
+
+message GetOTDetailReq {
+  int64 OrderId = 1;
+}
+
+message OTInfo {
+  int64 OrderId = 1;
+  int64 TicketId = 2;
+  string CreateTime = 3;
+  string UpdateTime = 4;
+}
+
+message GetOTDetailResp {
+  repeated OTInfo OTList = 1;
+}
+
+service OrderTicketService {
+  rpc AddOrderTicket (AddOrderTicketReq) returns (AddOrderTicketResp);
+  rpc DelOrderTicket (DelOrderTicketReq) returns (DelOrderTicketResp);
+  rpc GetOTDetail (GetOTDetailReq) returns (GetOTDetailResp);
+}
